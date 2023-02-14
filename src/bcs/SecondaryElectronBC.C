@@ -109,3 +109,4 @@ SecondaryElectronBC::computeQpResidual()
          ((1. - _r) / (1. + _r) * (-0.5 * _v_thermal * _n_gamma) -
           2. / (1. + _r) * (1. - _a) * _se_coeff[_qp] * _ion_flux);
 }
+
