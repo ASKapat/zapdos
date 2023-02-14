@@ -1,4 +1,4 @@
-///* This file is part of Zapdos, an open-source
+//* This file is part of Zapdos, an open-source
 //* application for the simulation of plasmas
 //* https://github.com/shannon-lab/zapdos
 //*
@@ -12,22 +12,24 @@
 
 #include "ADIntegratedBC.h"
 
-class HagelaarElectronAdvectionBC : public ADIntegratedBC
+class EvaporationE_BC : public ADIntegratedBC
 {
-public:
+public: 
   static InputParameters validParams();
-
-  HagelaarElectronAdvectionBC(const InputParameters & parameters);
+   
+  EvaporationE_BC(const InputParameters & parameters);
 
 protected:
   virtual ADReal computeQpResidual() override;
+  
+  const ADVariableValue & _T;
+  const Real _r_units;
+  const Real _a;
+  const Real _b;
+  const Real _E_evap;
+  const MaterialProperty<Real> & _m;
+  const MaterialProperty<Real> & _kb;
 
-  Real _r_units;
-  Real _r;
+  ADReal _evap_flux;
 
-  // Coupled variables
-  const ADVariableGradient & _grad_potential;
-
-  const ADMaterialProperty<Real> & _muem;
-  Real _a;
 };
